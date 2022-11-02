@@ -7,6 +7,7 @@ alphabet = list(string.ascii_lowercase)
 
 
 def info_needed(funcao):
+    """Obtém as informacoes necessárias para o andamento do código."""
     def wrapper():
         frase = str(input("Digite a frase que deve ser ENCRIPTADA/DESCRIPTADA:\n-->"))
         chave = int(input("Digite a chave:\n-->"))
@@ -15,6 +16,7 @@ def info_needed(funcao):
     return wrapper
 @info_needed
 def encriptacao(frase: str, chave:int) -> str:
+    """Realiza a encripacao de uma frase utilizando a Cifra de César."""
     new_frase = []
     frase = frase.replace(" ","")
     for i in frase:
@@ -29,6 +31,7 @@ def encriptacao(frase: str, chave:int) -> str:
     os.system('cls')
 @info_needed
 def descriptacao(frase: str, chave:int) -> str:
+    """Realiza a descriptacao de uma frase utilizando a Cifra de César"""
     new_frase = []
     frase = frase.replace(" ","")
     for i in frase:
@@ -42,6 +45,7 @@ def descriptacao(frase: str, chave:int) -> str:
     sleep(3)
     os.system('cls')
 def interface():
+    """Interface pra a escolha entre encriptacao e descriptacao"""
     ans = input("Encriptar[1]\tDescriptar[2]\nResposta: ")
     if ans == "1":
         encriptacao()
