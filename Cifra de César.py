@@ -1,15 +1,20 @@
 import string
+from time import sleep
+import os
 
 alphabet = list(string.ascii_lowercase)
 
 
 
-def cesar_info():
-    frase = input("Digite a frase à ser encriptada/descriptada:\n")
-    chave = int(input("Digite a chave:\n"))
-    return frase,chave
-def encriptacao():
-    frase, chave = cesar_info()
+def info_needed(funcao):
+    def wrapper():
+        frase = str(input("Digite a frase que deve ser ENCRIPTADA/DESCRIPTADA:\n-->"))
+        chave = int(input("Digite a chave:\n-->"))
+        os.system('cls')
+        funcao(frase=frase,chave=chave)
+    return wrapper
+@info_needed
+def encriptacao(frase: str, chave:int) -> str:
     new_frase = []
     frase = frase.replace(" ","")
     for i in frase:
@@ -20,10 +25,10 @@ def encriptacao():
         else:
             new_frase.append(alphabet[alphabet.index(i)+chave])
     print("".join(new_frase))
-    interface()
-
-def descriptacao():
-    frase, chave = cesar_info()
+    sleep(3)
+    os.system('cls')
+@info_needed
+def descriptacao(frase: str, chave:int) -> str:
     new_frase = []
     frase = frase.replace(" ","")
     for i in frase:
@@ -34,8 +39,8 @@ def descriptacao():
         else:
             new_frase.append(alphabet[::-1][alphabet.index(i)+chave])
     print("".join(new_frase))
-    interface()
-    
+    sleep(3)
+    os.system('cls')
 def interface():
     ans = input("Encriptar[1]\tDescriptar[2]\nResposta: ")
     if ans == "1":
@@ -44,5 +49,7 @@ def interface():
         descriptacao()
     else:
         print("Opcao nao encontrada.")
-        interface()
-interface()
+        sleep(3)
+        os.system('cls')
+while True:
+    interface()
